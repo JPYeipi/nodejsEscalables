@@ -14,6 +14,24 @@ class UserRepository{
         const user = new User(userData);
         return await user.save();
     }
+
+    static async addToArray(userId, field, item) {
+        // Usa $push para agregar elementos
+        return await User.findByIdAndUpdate(
+          userId,
+          { $push: { [field]: item } },
+          { new: true } // Retorna el documento actualizado
+        );
+      }
+    
+      static async removeFromArray(userId, field, item) {
+        // Usa $pull para eliminar elementos
+        return await User.findByIdAndUpdate(
+          userId,
+          { $pull: { [field]: item } },
+          { new: true }
+        );
+      }
 }
 
 module.exports = {UserRepository};

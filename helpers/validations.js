@@ -7,7 +7,7 @@ class Validations {
 
     static password(password){
         if(typeof password !== "string") throw new Error("La contraseña debe ser una cadena");
-        if(password.length < 8) throw new Error("La contraseña debe tener mínimo 5 caracteres");     
+        if(password.length < 8) throw new Error("La contraseña debe tener mínimo 8 caracteres");     
     }
 }
 

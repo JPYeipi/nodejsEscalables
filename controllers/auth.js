@@ -72,7 +72,7 @@ const register = async (req = request, res = response) => {
         const newUser = await UserRepository.create({
             username: username,
             password: hashedPassword, //Falta encriptar
-            role: "user" 
+            role: "user" ,
         })
 
         // const simpleUser = {
