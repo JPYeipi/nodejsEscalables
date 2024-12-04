@@ -96,6 +96,8 @@ const removeFromCart = async (req = request, res = response) => {
   }
 };
 
+
+
 const getCartItems = async (req = request, res = response) => {
   const { userId } = req.params;
   try {
