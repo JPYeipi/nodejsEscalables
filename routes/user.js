@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const {createNewUsers, getAllUsers, addToCart, addToWishlist, removeFromCart, removeFromWishlist, getCartItems } = require('../controllers/user');
+const {createNewUsers, getAllUsers, addToCart, addToWishlist, removeFromCart, removeFromWishlist, getCartItems ,getWishList} = require('../controllers/user');
 //const { addToCart } = require('../controllers/user.controller');
 const router = Router();
 
@@ -16,5 +16,6 @@ router.post('/:userId/wishlist', addToWishlist);
 // router.post("/cart/add/:productId", addToCart);
 // router.delete("/cart/remove/:productId", removeFromCart);
 router.get("/:userId/cart", getCartItems);
+router.get("/:userId/wishlist", getWishList);
 
 module.exports = router;
