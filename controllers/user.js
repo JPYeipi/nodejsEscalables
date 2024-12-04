@@ -110,6 +110,18 @@ const getCartItems = async (req = request, res = response) => {
   }
 };
 
+
+const getWishList = async (req = request, res = response) => {
+  const { userId } = req.params;
+  try {
+    const user = await UserRepository.getOne({ _id: userId });
+    res.json({ wishlist: user.wishlist });
+    return user.wishlist;
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Error al obtener los productos del carrito" });
+  }
+};
 module.exports = {
     getAllUsers,
     createNewUsers,
@@ -117,5 +129,6 @@ module.exports = {
     addToCart,
     removeFromCart,
     addToWishlist,
+    getWishList
     //removeFromWishlist
 }
