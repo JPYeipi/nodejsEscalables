@@ -1,16 +1,18 @@
 const {Router} = require('express');
-const {createNewUsers, getAllUsers, addToCart, addToWishlist, removeFromCart, removeFromWishlist, getCartItems ,getWishList} = require('../controllers/user');
+const {createNewUsers, getAllUsers, addToCart, addToWishlist, removeFromCart, removeFromWishList, getCartItems ,getWishList} = require('../controllers/user');
+const { validateJWT } = require('../middlewares/verifyJWT');
 //const { addToCart } = require('../controllers/user.controller');
 const router = Router();
 
-router.get("/", getAllUsers);
+router.get("/",getAllUsers);
 
 router.post("/", createNewUsers);
-router.post('/:userId/carrito', addToCart);
+router.post('/:userId/carrito',[validateJWT], addToCart);
 
-router.delete("/:userId/carrito", removeFromCart);
+router.delete("/:userId/carrito", [validateJWT],removeFromCart);
+router.delete("/:userId/wishlist", [validateJWT],removeFromWishList);
 
-router.post('/:userId/wishlist', addToWishlist);
+router.post('/:userId/wishlist', [validateJWT],addToWishlist);
 // router.delete("/wishlist/remove/:productId", removeFromWishlist);
 
 // router.post("/cart/add/:productId", addToCart);

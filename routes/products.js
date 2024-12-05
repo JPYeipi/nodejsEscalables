@@ -8,10 +8,10 @@ router.get("/", getAllProducts);
 
 router.get("/:id", getProductById);
 
-router.post("/" ,createNewProducts);
+router.post("/" , [validateJWT, verifyAdminRole] , createNewProducts);
 //[validateJWT, verifyAdminRole]
-router.delete("/:id", deleteTvShow);
+router.delete("/:id",[validateJWT, verifyAdminRole],  deleteTvShow);
 
-router.put("/:id", updateTvShow);
+router.put("/:id",[validateJWT, verifyAdminRole], updateTvShow);
 
 module.exports = router;

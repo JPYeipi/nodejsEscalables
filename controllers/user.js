@@ -96,6 +96,19 @@ const removeFromCart = async (req = request, res = response) => {
   }
 };
 
+const removeFromWishList = async (req = request, res = response) => {
+  const { userId } = req.params;
+  const { productId } = req.body;
+
+  try {
+    const updatedUser = await UserRepository.removeFromArray(userId, "wishlist", productId);
+    res.status(200).json({ msg: "Producto eliminado del wishlist", wishlist: updatedUser.wishlist });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Error al eliminar del wishlist" });
+  }
+};
+
 
 
 const getCartItems = async (req = request, res = response) => {
@@ -129,6 +142,6 @@ module.exports = {
     addToCart,
     removeFromCart,
     addToWishlist,
-    getWishList
-    //removeFromWishlist
+    getWishList,
+    removeFromWishList
 }
